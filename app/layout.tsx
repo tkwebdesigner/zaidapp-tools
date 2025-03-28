@@ -7,6 +7,7 @@ import { Toaster } from '@/components/ui/sonner';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
   title: 'Web Tools - Text Analysis, Age Calculator & SEO Checker',
   description: 'A collection of useful web tools including Word Counter, Age Calculator, and SEO Checker.',
   keywords: 'word counter, age calculator, seo checker, web tools, text analysis',
@@ -14,6 +15,21 @@ export const metadata: Metadata = {
     title: 'Web Tools - Text Analysis, Age Calculator & SEO Checker',
     description: 'A collection of useful web tools including Word Counter, Age Calculator, and SEO Checker.',
     type: 'website',
+    url: '/', // This will be resolved relative to metadataBase
+    images: [
+      {
+        url: '/og-image.jpg', // This path will be relative to metadataBase
+        width: 1200,
+        height: 630,
+        alt: 'Web Tools',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Web Tools - Text Analysis, Age Calculator & SEO Checker',
+    description: 'A collection of useful web tools including Word Counter, Age Calculator, and SEO Checker.',
+    images: ['/twitter-image.jpg'], // This path will be relative to metadataBase
   },
 };
 
