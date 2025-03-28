@@ -1,17 +1,35 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import { differenceInYears, differenceInMonths, differenceInDays, parse, format } from 'date-fns';
+import { differenceInYears, differenceInMonths, differenceInDays, format } from 'date-fns';
 import { toast } from 'sonner';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { Calendar } from '@/components/ui/calendar';
+import Flatpickr from 'flatpickr';
+import 'flatpickr/dist/themes/light.css'; // or another theme if you prefer
 
 export function AgeCalculator() {
-  const [birthDate, setBirthDate] = useState<Date | undefined>(new Date(1990, 0, 1)); // Default to Jan 1, 1990
+  const [birthDate, setBirthDate] = useState<Date | undefined>(new Date(1990, 0, 1));
   const [age, setAge] = useState<{ years: number; months: number; days: number } | null>(null);
+  const datePickerRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (datePickerRef.current) {
+      const flatpickrInstance = Flatpickr(datePickerRef.current, {
+        defaultDate: birthDate,
+        maxDate: new Date(),
+        dateFormat: 'F j, Y',
+        onChange: (selectedDates) => {
+          setBirthDate(selectedDates[0] || undefined);
+        }
+      });
+
+      return () => {
+        flatpickrInstance.destroy();
+      };
+    }
+  }, []);
 
   const calculateAge = () => {
     try {
@@ -43,28 +61,12 @@ export function AgeCalculator() {
         <div className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="birthdate">Enter your birth date</Label>
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button
-                  variant={"outline"}
-                  className="w-full justify-start text-left font-normal"
-                >
-                  {birthDate ? format(birthDate, "PPP") : <span>Pick a date</span>}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0">
-                <Calendar
-                  mode="single"
-                  selected={birthDate}
-                  onSelect={setBirthDate}
-                  initialFocus
-                  defaultMonth={birthDate}
-                  fromYear={1900}
-                  toYear={new Date().getFullYear()}
-                  captionLayout="dropdown-buttons"
-                />
-              </PopoverContent>
-            </Popover>
+            <input
+              ref={datePickerRef}
+              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              placeholder="Select date"
+              data-input
+            />
           </div>
           <Button onClick={calculateAge} className="w-full">
             Calculate Age
