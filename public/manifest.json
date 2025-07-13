@@ -1,0 +1,24 @@
+{
+  "name": "Web Tools - Free Professional Tools for Content Creators",
+  "short_name": "Web Tools",
+  "description": "Free professional web tools including Word Counter, Age Calculator, SEO Checker, and Image Converter. No registration required, privacy-focused, and always available.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F3F4F6",
+  "theme_color": "#6366F1",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "32x32",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/app-logo.svg",
+      "sizes": "128x128",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+} 

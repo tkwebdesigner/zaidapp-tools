@@ -77,15 +77,18 @@ export function SEOChecker() {
         body: JSON.stringify({ url }),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error('Failed to analyze website');
+        throw new Error(data.error || 'Failed to analyze website');
       }
 
-      const data = await response.json();
       setAnalysis(data);
       toast.success('Analysis completed successfully');
     } catch (error) {
-      toast.error('Failed to analyze website. Please try again.');
+      const errorMessage = error instanceof Error ? error.message : 'Failed to analyze website. Please try again.';
+      toast.error(errorMessage);
+      setAnalysis(null);
     } finally {
       setIsLoading(false);
     }

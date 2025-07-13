@@ -4,14 +4,22 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import { differenceInYears, differenceInMonths, differenceInDays, format } from 'date-fns';
+import { CalendarDays, Clock, Cake, Calendar } from 'lucide-react';
 import { toast } from 'sonner';
 import Flatpickr from 'flatpickr';
-import 'flatpickr/dist/themes/light.css'; // or another theme if you prefer
+import 'flatpickr/dist/themes/light.css';
+
+interface AgeResult {
+  years: number;
+  months: number;
+  days: number;
+  totalDays: number;
+  nextBirthday: Date;
+}
 
 export function AgeCalculator() {
   const [birthDate, setBirthDate] = useState<Date | undefined>(new Date(1990, 0, 1));
-  const [age, setAge] = useState<{ years: number; months: number; days: number } | null>(null);
+  const [result, setResult] = useState<AgeResult | null>(null);
   const datePickerRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -29,7 +37,7 @@ export function AgeCalculator() {
         flatpickrInstance.destroy();
       };
     }
-  }, []);
+  }, [birthDate]);
 
   const calculateAge = () => {
     try {
@@ -45,50 +53,101 @@ export function AgeCalculator() {
         return;
       }
 
-      const years = differenceInYears(today, birthDate);
-      const months = differenceInMonths(today, birthDate) % 12;
-      const days = differenceInDays(today, birthDate) % 30;
+      let years = today.getFullYear() - birthDate.getFullYear();
+      let months = today.getMonth() - birthDate.getMonth();
+      let days = today.getDate() - birthDate.getDate();
 
-      setAge({ years, months, days });
+      // Adjust for negative months or days
+      if (days < 0) {
+        months--;
+        const lastMonth = new Date(today.getFullYear(), today.getMonth() - 1, birthDate.getDate());
+        days += Math.floor((today.getTime() - lastMonth.getTime()) / (1000 * 60 * 60 * 24));
+      }
+
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+
+      // Calculate total days
+      const totalDays = Math.floor((today.getTime() - birthDate.getTime()) / (1000 * 60 * 60 * 24));
+
+      // Calculate next birthday
+      const nextBirthday = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+      if (nextBirthday < today) {
+        nextBirthday.setFullYear(today.getFullYear() + 1);
+      }
+
+      setResult({
+        years,
+        months,
+        days,
+        totalDays,
+        nextBirthday,
+      });
     } catch (error) {
       toast.error('Please enter a valid date');
     }
   };
 
+  const StatCard = ({ icon: Icon, label, value }: { icon: any; label: string; value: string | number }) => (
+    <Card className="p-4">
+      <div className="flex items-center gap-3">
+        <div className="p-2 bg-primary/10 rounded-lg">
+          <Icon className="w-5 h-5 text-primary" />
+        </div>
+        <div>
+          <p className="text-sm text-muted-foreground">{label}</p>
+          <p className="text-2xl font-bold">{value}</p>
+        </div>
+      </div>
+    </Card>
+  );
+
   return (
     <div className="w-full max-w-4xl mx-auto space-y-6">
       <Card className="p-6">
-        <div className="space-y-4">
+        <div className="space-y-6">
           <div className="space-y-2">
             <Label htmlFor="birthdate">Enter your birth date</Label>
-            <input
-              ref={datePickerRef}
-              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              placeholder="Select date"
-              data-input
-            />
+            <div className="flex gap-2">
+              <input
+                ref={datePickerRef}
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                placeholder="Select date"
+                data-input
+              />
+              <Button onClick={calculateAge} disabled={!birthDate}>
+                Calculate
+              </Button>
+            </div>
           </div>
-          <Button onClick={calculateAge} className="w-full">
-            Calculate Age
-          </Button>
-        </div>
 
-        {age && (
-          <div className="mt-6 grid grid-cols-3 gap-4">
-            <Card className="p-4 text-center">
-              <div className="text-2xl font-bold">{age.years}</div>
-              <div className="text-sm text-muted-foreground">Years</div>
-            </Card>
-            <Card className="p-4 text-center">
-              <div className="text-2xl font-bold">{age.months}</div>
-              <div className="text-sm text-muted-foreground">Months</div>
-            </Card>
-            <Card className="p-4 text-center">
-              <div className="text-2xl font-bold">{age.days}</div>
-              <div className="text-sm text-muted-foreground">Days</div>
-            </Card>
-          </div>
-        )}
+          {result && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <StatCard
+                icon={CalendarDays}
+                label="Years"
+                value={result.years}
+              />
+              <StatCard
+                icon={Clock}
+                label="Months"
+                value={result.months}
+              />
+              <StatCard
+                icon={Cake}
+                label="Days"
+                value={result.days}
+              />
+              <StatCard
+                icon={Calendar}
+                label="Next Birthday"
+                value={result.nextBirthday.toLocaleDateString()}
+              />
+            </div>
+          )}
+        </div>
       </Card>
     </div>
   );

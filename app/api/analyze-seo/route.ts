@@ -5,8 +5,47 @@ export async function POST(req: Request) {
   try {
     const { url } = await req.json();
 
-    const response = await fetch(url);
+    // Validate URL
+    if (!url) {
+      return NextResponse.json(
+        { error: 'URL is required' },
+        { status: 400 }
+      );
+    }
+
+    try {
+      new URL(url);
+    } catch {
+      return NextResponse.json(
+        { error: 'Invalid URL format' },
+        { status: 400 }
+      );
+    }
+
+    // Use a more robust way to fetch the URL
+    const response = await fetch(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (compatible; SEOAnalyzer/1.0; +http://example.com)',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+      },
+      redirect: 'follow',
+    });
+
+    if (!response.ok) {
+      return NextResponse.json(
+        { error: `Failed to fetch URL: ${response.statusText}` },
+        { status: response.status }
+      );
+    }
+
     const html = await response.text();
+    if (!html) {
+      return NextResponse.json(
+        { error: 'Empty response from URL' },
+        { status: 400 }
+      );
+    }
+
     const $ = cheerio.load(html);
 
     // Title analysis
