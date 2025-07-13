@@ -76,7 +76,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </nav>
         )}
         {/* Main content: responsive max-width and padding */}
-        <main className="flex-1 min-w-0 w-full max-w-5xl mx-auto">
+        <main className={isHome ? "flex-1 min-w-0 w-full" : "flex-1 min-w-0 w-full max-w-5xl mx-auto"}>
           {isHome ? (
             children
           ) : (
