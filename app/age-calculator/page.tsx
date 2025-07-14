@@ -9,10 +9,20 @@ export const metadata: Metadata = {
     title: 'Age Calculator - Calculate Age & Time Differences',
     description: 'Free online age calculator tool. Calculate exact age, time differences, and important dates.',
     url: '/age-calculator',
+    images: [
+      {
+        url: '/sharing-images/bith-date-calculator.webp',
+        width: 1200,
+        height: 630,
+        alt: 'Age Calculator Tool',
+        type: 'image/webp',
+      },
+    ],
   },
   twitter: {
     title: 'Age Calculator - Calculate Age & Time Differences',
     description: 'Free online age calculator tool. Calculate exact age, time differences, and important dates.',
+    images: ['/sharing-images/bith-date-calculator.webp'],
   },
   alternates: {
     canonical: '/age-calculator',
@@ -20,5 +30,23 @@ export const metadata: Metadata = {
 };
 
 export default function AgeCalculatorPage() {
-  return <main><AgeCalculator /></main>;
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Age Calculator",
+            "description": "Free online age calculator tool. Calculate exact age, time differences, and important dates.",
+            "image": "/sharing-images/bith-date-calculator.webp",
+            "url": `${siteUrl}/age-calculator`
+          })
+        }}
+      />
+      <main><AgeCalculator /></main>
+    </>
+  );
 } 
