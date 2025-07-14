@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 import { Card } from '@/components/ui/card';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Menu } from 'lucide-react';
+import { Menu, Info, FileText, Shield, Mail, RefreshCcw, AlertTriangle } from 'lucide-react';
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -15,6 +15,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === '/';
+  const infoPages = [
+    '/about-us',
+    '/contact-us',
+    '/terms',
+    '/privacy-policy',
+    '/disclaimer',
+    '/refund-policy',
+  ];
+  const isInfoPage = infoPages.includes(pathname);
 
   useEffect(() => {
     const onScroll = () => {
@@ -31,6 +40,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
     '/image-converter': 'Image Converter',
     '/sitemap-generator': 'Sitemap Generator',
   };
+
+  const infoLinks = [
+    { name: 'About Us', href: '/about-us', icon: Info },
+    { name: 'Contact Us', href: '/contact-us', icon: Mail },
+    { name: 'Terms & Conditions', href: '/terms', icon: FileText },
+    { name: 'Privacy Policy', href: '/privacy-policy', icon: Shield },
+    { name: 'Disclaimer', href: '/disclaimer', icon: AlertTriangle },
+    { name: 'Refund Policy', href: '/refund-policy', icon: RefreshCcw },
+  ];
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -62,7 +80,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </header>
       <div className="flex-1 flex flex-row max-w-full w-full mx-auto pt-4 md:pt-8 gap-2 sm:gap-4 md:gap-8 lg:gap-12 xl:gap-16">
         {/* Sidebar: responsive width, never overlaps, always visible on md+ */}
-        {!isHome && (
+        {!isHome && !isInfoPage && (
           <nav className="relative z-30 flex-shrink-0">
             <div className="hidden md:block">
               <div className="w-48 sm:w-56 md:w-60 lg:w-64 xl:w-72">
@@ -76,9 +94,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </nav>
         )}
         {/* Main content: responsive max-width and padding */}
-        <main className={isHome ? "flex-1 min-w-0 w-full" : "flex-1 min-w-0 w-full max-w-5xl mx-auto"}>
+        <main className={
+          isHome
+            ? 'flex-1 min-w-0 w-full'
+            : isInfoPage
+              ? 'flex-1 min-w-0 w-full max-w-4xl mx-auto px-2 md:px-0'
+              : 'flex-1 min-w-0 w-full max-w-5xl mx-auto'
+        }>
           {isHome ? (
             children
+          ) : isInfoPage ? (
+            <div className="bg-card/90 rounded-2xl shadow-2xl border border-border p-2 sm:p-4 md:p-6 lg:p-8 min-h-[70vh] flex flex-col gap-6 dark:bg-neutral-900">
+              {children}
+            </div>
           ) : (
             <motion.div
               initial={{ opacity: 0, y: 24 }}
@@ -96,6 +124,22 @@ export function Layout({ children }: { children: React.ReactNode }) {
           )}
         </main>
       </div>
+      <footer className="w-full mt-auto border-t border-border bg-card/80 py-6 px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-muted-foreground">
+        <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+          {infoLinks.map((link) => {
+            const Icon = link.icon;
+            return (
+              <Link key={link.href} href={link.href} className="flex items-center gap-2 hover:text-primary transition-colors text-sm font-medium">
+                <Icon className="h-4 w-4" />
+                {link.name}
+              </Link>
+            );
+          })}
+        </div>
+        <div className="text-xs text-center md:text-right mt-2 md:mt-0">
+          &copy; {new Date().getFullYear()} Web Tools. All rights reserved.
+        </div>
+      </footer>
     </div>
   );
 } 

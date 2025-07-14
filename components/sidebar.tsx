@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, X, Search, Image as ImageIcon, TextQuote, CalendarDays } from 'lucide-react';
+import { Menu, X, Search, Image as ImageIcon, TextQuote, CalendarDays, Info, FileText, Shield, Mail, RefreshCcw, AlertTriangle } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface Tool {
