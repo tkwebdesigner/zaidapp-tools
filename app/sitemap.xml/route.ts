@@ -4,11 +4,17 @@ export async function GET() {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://localhost:3000';
   const urls = [
     { loc: `${baseUrl}/`, lastmod: new Date().toISOString(), priority: '1.0' },
-    { loc: `${baseUrl}/word-counter`, lastmod: new Date().toISOString(), priority: '0.8' },
+    { loc: `${baseUrl}/about-us`, lastmod: new Date().toISOString(), priority: '0.8' },
+    { loc: `${baseUrl}/contact-us`, lastmod: new Date().toISOString(), priority: '0.8' },
+    { loc: `${baseUrl}/disclaimer`, lastmod: new Date().toISOString(), priority: '0.8' },
+    { loc: `${baseUrl}/privacy-policy`, lastmod: new Date().toISOString(), priority: '0.8' },
+    { loc: `${baseUrl}/refund-policy`, lastmod: new Date().toISOString(), priority: '0.8' },
+    { loc: `${baseUrl}/terms`, lastmod: new Date().toISOString(), priority: '0.8' },
     { loc: `${baseUrl}/age-calculator`, lastmod: new Date().toISOString(), priority: '0.8' },
-    { loc: `${baseUrl}/seo-checker`, lastmod: new Date().toISOString(), priority: '0.8' },
     { loc: `${baseUrl}/image-converter`, lastmod: new Date().toISOString(), priority: '0.8' },
+    { loc: `${baseUrl}/seo-checker`, lastmod: new Date().toISOString(), priority: '0.8' },
     { loc: `${baseUrl}/sitemap-generator`, lastmod: new Date().toISOString(), priority: '0.8' },
+    { loc: `${baseUrl}/word-counter`, lastmod: new Date().toISOString(), priority: '0.8' },
   ];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls
