@@ -47,6 +47,24 @@ export default function AgeCalculatorPage() {
         }}
       />
       <main><AgeCalculator /></main>
+      <div className="mt-4 mx-auto text-base leading-relaxed text-muted-foreground">
+        <h2 className="text-2xl font-bold mb-4 text-foreground">About the Age Calculator Tool</h2>
+        <p>
+          The Age Calculator tool is a simple yet powerful utility that helps you determine your exact age in years, months, and days. Whether you need to calculate your age for official documents, plan a birthday celebration, or simply satisfy your curiosity, this tool provides instant and accurate results. It’s also useful for parents, teachers, and HR professionals who need to verify ages for various purposes.
+        </p>
+        <p className="mt-4">
+          Using the Age Calculator is straightforward—just enter your birth date, and the tool will instantly display your age. The calculation takes into account leap years and varying month lengths, ensuring precision. This makes it ideal for use in academic, professional, and personal contexts.
+        </p>
+        <p className="mt-4">
+          The tool is designed with user experience in mind. Its clean interface and responsive design make it accessible on any device, from smartphones to desktops. There’s no need to sign up or provide any personal information; your data is never stored or shared, ensuring complete privacy.
+        </p>
+        <p className="mt-4">
+          In addition to basic age calculation, the tool can be used to determine the time elapsed between two dates, making it useful for project planning, event management, and more. Whether you’re a student learning about dates and time, a professional managing deadlines, or someone planning a special occasion, the Age Calculator is a reliable companion.
+        </p>
+        <p className="mt-4">
+          Best of all, the Age Calculator is completely free to use. Try it today and discover how easy it is to calculate ages and date differences with just a few clicks!
+        </p>
+      </div>
     </>
   );
 } 

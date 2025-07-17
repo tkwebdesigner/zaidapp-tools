@@ -32,8 +32,8 @@ export const metadata: Metadata = {
 
 export default function RefundPolicyPage() {
   return (
-    <main className="flex justify-center items-center min-h-[80vh] bg-background px-2">
-      <Card className="w-full max-w-2xl shadow-xl">
+    <main className="flex justify-center items-center">
+      <Card className="w-full">
         <CardHeader className="flex flex-col items-center">
           <Image src="/images/app-logo.svg" alt="Web Tools Logo" width={96} height={96} className="mb-2" />
           <CardTitle className="text-3xl font-bold mb-2">Return & Refund Policy</CardTitle>
@@ -41,7 +41,7 @@ export default function RefundPolicyPage() {
         </CardHeader>
         <CardContent className="text-muted-foreground space-y-4 text-sm">
           <p>As Web Tools is a free service, we do not offer paid products or subscriptions. Therefore, returns and refunds are not applicable.</p>
-          <p>If you have any concerns or issues with our tools, please contact us at <a href="mailto:support@your-domain.com" className="underline">support@your-domain.com</a> and we will do our best to assist you.</p>
+          <p>If you have any concerns or issues with our tools, please contact us at <a href="mailto:contact@zaidapp.com" className="underline">contact@zaidapp.com</a> and we will do our best to assist you.</p>
         </CardContent>
       </Card>
     </main>

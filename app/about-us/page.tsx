@@ -32,8 +32,8 @@ export const metadata: Metadata = {
 
 export default function AboutUsPage() {
   return (
-    <main className="flex justify-center items-center min-h-[80vh] bg-background px-2">
-      <Card className="w-full max-w-2xl shadow-xl">
+    <div className="w-full">
+      <Card className="w-full">
         <CardHeader className="flex flex-col items-center">
           <Image src="/images/app-logo.svg" alt="Web Tools Logo" width={96} height={96} className="mb-2" />
           <CardTitle className="text-3xl font-bold mb-2">About Us</CardTitle>
@@ -51,6 +51,6 @@ export default function AboutUsPage() {
           </p>
         </CardContent>
       </Card>
-    </main>
+    </div>
   );
 } 

@@ -385,9 +385,6 @@ export default function Home() {
                 </ul>
               </div>
             </div>
-            <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
-              <p>&copy; 2025 Web Tools. All rights reserved. Design & Development by <a className='underline text-blue-500' href='https://zaidapp.com'>ZaidApp</a></p>
-            </div>
           </div>
         </footer>
       </main>
