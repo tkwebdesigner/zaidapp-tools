@@ -1,6 +1,8 @@
 "use client";
 import React, { useState, useRef } from "react";
 import { Button } from '@/components/ui/button';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/components/ui/select';
 
 const SITEMAP_TYPES = [
   { label: "HTML Sitemap", value: "html" },
@@ -105,21 +107,18 @@ export default function SitemapGeneratorClient() {
             </div>
             <div>
               <label className="block mb-2 font-semibold text-lg">Sitemap Type</label>
-              <div className="flex gap-6">
-                {SITEMAP_TYPES.map(opt => (
-                  <label key={opt.value} className="flex items-center gap-2 cursor-pointer text-base font-medium">
-                    <input
-                      type="radio"
-                      name="sitemapType"
-                      value={opt.value}
-                      checked={type === opt.value}
-                      onChange={() => setType(opt.value)}
-                      className="accent-indigo-500 w-4 h-4"
-                    />
-                    {opt.label}
-                  </label>
-                ))}
-              </div>
+              <Select value={type} onValueChange={setType}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select sitemap type" />
+                </SelectTrigger>
+                <SelectContent>
+                  {SITEMAP_TYPES.map(opt => (
+                    <SelectItem key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
             <Button type="submit" className="w-full h-12 text-lg font-semibold" disabled={loading}>
               {loading ? (status === "done" ? "Done" : "Generating...") : "Generate Sitemap"}

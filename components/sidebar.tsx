@@ -105,10 +105,11 @@ export function Sidebar({ isOpen, setOpen }: SidebarProps) {
             <span className="sr-only">Toggle sidebar</span>
           </Button>
         </SheetTrigger>
-        <SheetContent side="left" className="w-[80px] p-0 flex flex-col items-center">
+        <SheetContent side="left" className="w-[260px] p-0 flex flex-col items-center">
           <div className="flex h-full flex-col items-center">
-            <div className="flex items-center justify-center p-4 border-b">
-              <h2 className="text-lg font-semibold">Web Tools</h2>
+            <div className="flex items-center justify-center p-4 border-b gap-2">
+              <img src="/images/app-logo.svg" alt="Logo" className="h-7 w-7" />
+              <div className="text-lg font-semibold">Web Tools</div>
             </div>
             <ScrollArea className="flex-1 w-full">
               <div className="p-4 space-y-4 flex flex-col items-center">
@@ -122,7 +123,7 @@ export function Sidebar({ isOpen, setOpen }: SidebarProps) {
                           <Link
                             href={tool.href}
                             className={cn(
-                              'flex items-center justify-center p-3 rounded-xl transition-all duration-200 shadow-sm',
+                              'flex items-center gap-3 justify-start p-3 rounded-xl transition-all duration-200 shadow-sm w-full',
                               isActive
                                 ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-lg scale-110'
                                 : 'bg-card/80 hover:bg-accent/60 text-foreground',
@@ -138,6 +139,7 @@ export function Sidebar({ isOpen, setOpen }: SidebarProps) {
                             >
                               <Icon className={cn('h-6 w-6', isActive ? 'text-white drop-shadow-lg' : 'text-primary group-hover:text-indigo-600')} />
                             </motion.span>
+                            <span className="font-medium text-base truncate">{tool.name}</span>
                           </Link>
                         </TooltipTrigger>
                         <TooltipContent side="left" className="text-sm font-semibold">
@@ -155,7 +157,7 @@ export function Sidebar({ isOpen, setOpen }: SidebarProps) {
 
       {/* Desktop Sidebar */}
       <aside className={cn(
-        'hidden md:flex flex-col w-[80px] h-[calc(100vh-7rem)] bg-card/80 border border-border rounded-2xl shadow-2xl backdrop-blur-lg p-2 transition-all duration-300 items-center',
+        'hidden lg:flex flex-col w-[80px] h-[calc(100vh-7rem)] bg-card/80 border border-border rounded-2xl shadow-2xl backdrop-blur-lg p-2 transition-all duration-300 items-center',
         isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
       )}>
         <ScrollArea className="flex-1 w-full">

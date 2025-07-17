@@ -1,5 +1,13 @@
 import { ImageConverter } from '@/components/image-converter';
 import type { Metadata } from 'next';
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator
+} from '@/components/ui/breadcrumb';
 
 export const metadata: Metadata = {
   title: 'Image Converter - Convert JPG, PNG, WebP Formats',
@@ -46,8 +54,33 @@ export default function ImageConverterPage() {
           })
         }}
       />
-      <main><ImageConverter /></main>
-      <div className="mt-4 mx-auto text-base leading-relaxed text-muted-foreground">
+      <main>
+        <div className="max-w-2xl mx-auto flex flex-col items-center justify-center text-center mt-8 mb-8">
+          <Breadcrumb className="justify-center flex mb-4">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="#">Convert</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>Image Converter</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gradient bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-2">Image Converter</h1>
+          <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
+            Convert images between JPG, PNG, and WEBP formats in seconds without losing quality or installing any software or plugins!
+          </p>
+        </div>
+        <div className="max-w-3xl mx-auto">
+          <ImageConverter />
+        </div>
+      </main>
+      <div className="mt-8 mx-auto text-base leading-relaxed text-muted-foreground max-w-3xl">
         <h2 className="text-2xl font-bold mb-4 text-foreground">About the Image Converter Tool</h2>
         <p>
           The Image Converter tool is a versatile utility that allows you to convert images between popular formats such as JPG, PNG, WebP, and SVG. Whether you’re a designer, developer, or everyday user, this tool makes it easy to adapt images for websites, social media, or personal projects. No software installation is required—everything happens instantly in your browser.

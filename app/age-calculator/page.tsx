@@ -1,5 +1,13 @@
 import { AgeCalculator } from '@/components/age-calculator';
 import type { Metadata } from 'next';
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator
+} from '@/components/ui/breadcrumb';
 
 export const metadata: Metadata = {
   title: 'Age Calculator - Calculate Age & Time Differences',
@@ -46,8 +54,33 @@ export default function AgeCalculatorPage() {
           })
         }}
       />
-      <main><AgeCalculator /></main>
-      <div className="mt-4 mx-auto text-base leading-relaxed text-muted-foreground">
+      <main>
+        <div className="max-w-2xl mx-auto flex flex-col items-center justify-center text-center mt-8 mb-8">
+          <Breadcrumb className="justify-center flex mb-4">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="#">Tools</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>Age Calculator</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gradient bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-2">Age Calculator</h1>
+          <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
+            Free online age calculator tool. Calculate exact age, time differences, and important dates. Useful for planning, documentation, and personal records.
+          </p>
+        </div>
+        <div className="max-w-3xl mx-auto">
+          <AgeCalculator />
+        </div>
+      </main>
+      <div className="mt-8 mx-auto text-base leading-relaxed text-muted-foreground max-w-3xl">
         <h2 className="text-2xl font-bold mb-4 text-foreground">About the Age Calculator Tool</h2>
         <p>
           The Age Calculator tool is a simple yet powerful utility that helps you determine your exact age in years, months, and days. Whether you need to calculate your age for official documents, plan a birthday celebration, or simply satisfy your curiosity, this tool provides instant and accurate results. It’s also useful for parents, teachers, and HR professionals who need to verify ages for various purposes.

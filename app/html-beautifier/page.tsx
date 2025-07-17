@@ -1,4 +1,12 @@
 import HTMLBeautifierClient from './HTMLBeautifierClient';
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator
+} from '@/components/ui/breadcrumb';
 
 export const metadata = {
   title: 'HTML Beautifier - Web Tools',
@@ -28,8 +36,33 @@ export const metadata = {
 export default function HTMLBeautifierPage() {
   return (
     <>
-      <HTMLBeautifierClient />
-      <div className="mt-4 mx-auto text-base leading-relaxed text-muted-foreground">
+      <main>
+        <div className="max-w-2xl mx-auto flex flex-col items-center justify-center text-center mt-8 mb-8">
+          <Breadcrumb className="justify-center flex mb-4">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="#">Tools</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>HTML Beautifier</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gradient bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-2">HTML Beautifier</h1>
+          <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
+            Beautify and format your HTML code instantly online. Improve readability and maintain clean markup.
+          </p>
+        </div>
+        <div className="max-w-3xl mx-auto">
+          <HTMLBeautifierClient />
+        </div>
+      </main>
+      <div className="mt-8 mx-auto text-base leading-relaxed text-muted-foreground max-w-3xl">
         <h2 className="text-2xl font-bold mb-4 text-foreground">About the HTML Beautifier Tool</h2>
         <p>
           The HTML Beautifier Tool is a versatile and essential utility for web developers, designers, and anyone who works with HTML code. It helps you instantly format and organize your HTML, making it easier to read, debug, and maintain. Whether you’re working on a small project or a large website, clean and well-structured HTML is crucial for both development and long-term success.

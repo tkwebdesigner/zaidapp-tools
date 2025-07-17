@@ -1,4 +1,12 @@
 import CSSMinifierClient from './CSSMinifierClient';
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator
+} from '@/components/ui/breadcrumb';
 
 export const metadata = {
   title: 'CSS Minifier - Web Tools',
@@ -28,8 +36,33 @@ export const metadata = {
 export default function CSSMinifierPage() {
   return (
     <>
-      <CSSMinifierClient />
-      <div className="mt-4 mx-auto text-base leading-relaxed text-muted-foreground">
+      <main>
+        <div className="max-w-2xl mx-auto flex flex-col items-center justify-center text-center mt-8 mb-8">
+          <Breadcrumb className="justify-center flex mb-4">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="#">Tools</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>CSS Minifier</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gradient bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-2">CSS Minifier</h1>
+          <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
+            Minify your CSS code instantly online. Remove whitespace, comments, and reduce file size for faster websites.
+          </p>
+        </div>
+        <div className="max-w-3xl mx-auto">
+          <CSSMinifierClient />
+        </div>
+      </main>
+      <div className="mt-8 mx-auto text-base leading-relaxed text-muted-foreground max-w-3xl">
         <h2 className="text-2xl font-bold mb-4 text-foreground">About the CSS Minifier Tool</h2>
         <p>
           The CSS Minifier Tool is a fast, reliable, and user-friendly utility designed to help web developers, designers, and site owners optimize their CSS code. By removing unnecessary whitespace, comments, and formatting, this tool reduces the size of your CSS files, resulting in faster page loads and improved website performance.

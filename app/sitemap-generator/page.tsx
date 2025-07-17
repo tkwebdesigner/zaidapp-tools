@@ -1,5 +1,13 @@
 import React from "react";
 import type { Metadata } from 'next';
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator
+} from '@/components/ui/breadcrumb';
 
 export const metadata: Metadata = {
   title: 'Sitemap Generator - Create HTML & XML Sitemaps',
@@ -34,8 +42,33 @@ import SitemapGeneratorClient from './SitemapGeneratorClient';
 export default function SitemapGeneratorPage() {
   return (
     <>
-      <SitemapGeneratorClient />
-      <div className="mt-4 mx-auto text-base leading-relaxed text-muted-foreground">
+      <main>
+        <div className="max-w-2xl mx-auto flex flex-col items-center justify-center text-center mt-8 mb-8">
+          <Breadcrumb className="justify-center flex mb-4">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="#">Tools</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>Sitemap Generator</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gradient bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-2">Sitemap Generator</h1>
+          <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
+            Free online sitemap generator tool. Create HTML, XML, and image sitemaps for your website with ease.
+          </p>
+        </div>
+        <div className="max-w-3xl mx-auto">
+          <SitemapGeneratorClient />
+        </div>
+      </main>
+      <div className="mt-8 mx-auto text-base leading-relaxed text-muted-foreground max-w-3xl">
         <h2 className="text-2xl font-bold mb-4 text-foreground">About the Sitemap Generator Tool</h2>
         <p>
           The Sitemap Generator tool is an invaluable resource for website owners, developers, and SEO professionals. It enables you to create comprehensive HTML and XML sitemaps for your website, including options for image sitemaps. Sitemaps help search engines discover and index your site’s pages more efficiently, improving your site’s visibility and ranking.

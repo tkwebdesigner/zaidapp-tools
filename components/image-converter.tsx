@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import Image from 'next/image';
 import { Skeleton } from '@/components/ui/skeleton';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 
 interface ConversionOption {
   label: string;
@@ -197,21 +198,20 @@ export function ImageConverter() {
         <div className="space-y-4 sm:space-y-6">
           <div className="space-y-2">
             <Label className="text-sm sm:text-base font-semibold">Select Conversion Type</Label>
-            <Select value={conversionType} onValueChange={setConversionType}>
-              <SelectTrigger className="w-full rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 transition-all">
-                <SelectValue placeholder="Select conversion type" />
-              </SelectTrigger>
-              <SelectContent>
-                {conversionOptions.map((option) => (
-                  <SelectItem key={option.value} value={option.value} className="rounded-md hover:bg-blue-50 transition-colors">
-                    <div className="flex flex-col">
-                      <span className="text-sm sm:text-base font-medium">{option.label}</span>
-                      <span className="text-xs text-muted-foreground">{option.description}</span>
-                    </div>
-                  </SelectItem>
+            <Tabs value={conversionType} onValueChange={setConversionType} className="w-full">
+              <TabsList className="w-full grid grid-cols-2 sm:grid-cols-4 gap-2">
+                {conversionOptions.map(option => (
+                  <TabsTrigger key={option.value} value={option.value} className="truncate">
+                    {option.label}
+                  </TabsTrigger>
                 ))}
-              </SelectContent>
-            </Select>
+              </TabsList>
+              {conversionOptions.map(option => (
+                <TabsContent key={option.value} value={option.value}>
+                  <div className="text-sm text-muted-foreground mt-2 mb-4">{option.description}</div>
+                </TabsContent>
+              ))}
+            </Tabs>
           </div>
 
           <div className="space-y-2">
