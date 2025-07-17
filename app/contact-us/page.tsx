@@ -35,8 +35,8 @@ export const metadata: Metadata = {
 
 export default function ContactUsPage() {
   return (
-    <main className="flex justify-center items-center min-h-[80vh] bg-background px-2">
-      <Card className="w-full max-w-2xl shadow-xl">
+    <main className="flex justify-center items-center">
+      <Card className="w-full">
         <CardHeader className="flex flex-col items-center">
           <Image src="/images/app-logo.svg" alt="Web Tools Logo" width={96} height={96} className="mb-2" />
           <CardTitle className="text-3xl font-bold mb-2">Contact Us</CardTitle>
@@ -50,7 +50,7 @@ export default function ContactUsPage() {
             <Button type="submit" className="w-full">Send Message</Button>
           </form>
           <div className="mt-6 text-center text-muted-foreground text-sm">
-            <p>Email: <a href="mailto:support@your-domain.com" className="underline">support@your-domain.com</a></p>
+            <p>Email: <a href="mailto:contact@zaidapp.com" className="underline">contact@zaidapp.com</a></p>
             <p>We aim to respond within 24 hours.</p>
           </div>
         </CardContent>

@@ -15,6 +15,11 @@ export async function GET() {
     { loc: `${baseUrl}/seo-checker`, lastmod: new Date().toISOString(), priority: '0.8' },
     { loc: `${baseUrl}/sitemap-generator`, lastmod: new Date().toISOString(), priority: '0.8' },
     { loc: `${baseUrl}/word-counter`, lastmod: new Date().toISOString(), priority: '0.8' },
+    { loc: `${baseUrl}/faq`, lastmod: new Date().toISOString(), priority: '0.8'},
+    { loc: `${baseUrl}/testimonials`, lastmod: new Date().toISOString(), priority: '0.8'},
+    { loc: `${baseUrl}/faq-schema-generator`, lastmod: new Date().toISOString(), priority: '0.8'},
+    { loc: `${baseUrl}/css-minifier`, lastmod: new Date().toISOString(), priority: '0.8'},
+    { loc: `${baseUrl}/html-beautifier`, lastmod: new Date().toISOString(), priority: '0.8'},
   ];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls

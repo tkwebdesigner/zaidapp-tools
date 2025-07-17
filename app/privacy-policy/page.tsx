@@ -32,8 +32,8 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <main className="flex justify-center items-center min-h-[80vh] bg-background px-2">
-      <Card className="w-full max-w-2xl shadow-xl">
+    <main className="flex justify-center items-center">
+      <Card className="w-full">
         <CardHeader className="flex flex-col items-center">
           <Image src="/images/app-logo.svg" alt="Web Tools Logo" width={96} height={96} className="mb-2" />
           <CardTitle className="text-3xl font-bold mb-2">Privacy Policy</CardTitle>
@@ -42,7 +42,7 @@ export default function PrivacyPolicyPage() {
         <CardContent className="text-muted-foreground space-y-4 text-sm">
           <p>We value your privacy. Web Tools does not collect or store any personal data unless you explicitly provide it (e.g., via contact forms).</p>
           <p>All processing is done on your device whenever possible. We do not track, sell, or share your information with third parties.</p>
-          <p>For questions about our privacy practices, contact us at <a href="mailto:support@your-domain.com" className="underline">support@your-domain.com</a>.</p>
+          <p>For questions about our privacy practices, contact us at <a href="mailto:contact@zaidapp.com" className="underline">contact@zaidapp.com</a>.</p>
         </CardContent>
       </Card>
     </main>

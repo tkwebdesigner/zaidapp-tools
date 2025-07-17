@@ -117,7 +117,20 @@ function generateXmlSitemap(links: string[], rootUrl: string): string {
 
 function generateXmlSitemapWithImages(links: string[], images: string[], rootUrl: string): string {
   const now = new Date().toISOString();
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${links.map(link => `<url><loc>${link}</loc><lastmod>${now}</lastmod><priority>${getPriority(link, rootUrl)}</priority>${images.map(img => `<image:image><image:loc>${img}</image:loc></image:image>`).join("")}</url>`).join("\n")}\n</urlset>`;
+  // Map to track which image has been used
+  const usedImages = new Set<string>();
+  // For each link, associate images only if not already used
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${links.map(link => {
+    let imageTags = '';
+    for (const img of images) {
+      if (!usedImages.has(img)) {
+        imageTags += `<image:image><image:loc>${img}</image:loc></image:image>`;
+        usedImages.add(img);
+        break; // Only add one unique image per link
+      }
+    }
+    return `<url><loc>${link}</loc><lastmod>${now}</lastmod><priority>${getPriority(link, rootUrl)}</priority>${imageTags}</url>`;
+  }).join("\n")}\n</urlset>`;
 }
 
 // Add a simple job ID generator

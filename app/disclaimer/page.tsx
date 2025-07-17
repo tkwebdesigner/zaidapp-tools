@@ -32,8 +32,8 @@ export const metadata: Metadata = {
 
 export default function DisclaimerPage() {
   return (
-    <main className="flex justify-center items-center min-h-[80vh] bg-background px-2">
-      <Card className="w-full max-w-2xl shadow-xl">
+    <main className="flex justify-center items-center">
+      <Card className="w-full">
         <CardHeader className="flex flex-col items-center">
           <Image src="/images/app-logo.svg" alt="Web Tools Logo" width={96} height={96} className="mb-2" />
           <CardTitle className="text-3xl font-bold mb-2">Disclaimer</CardTitle>
@@ -42,7 +42,7 @@ export default function DisclaimerPage() {
         <CardContent className="text-muted-foreground space-y-4 text-sm">
           <p>All tools and content provided by Web Tools are for informational and utility purposes only. We make no guarantees regarding accuracy or suitability for any specific purpose.</p>
           <p>Use of our tools is at your own risk. We are not liable for any damages or losses resulting from the use of our services.</p>
-          <p>For questions, contact us at <a href="mailto:support@your-domain.com" className="underline">support@your-domain.com</a>.</p>
+          <p>For questions, contact us at <a href="mailto:contact@zaidapp.com" className="underline">contact@zaidapp.com</a>.</p>
         </CardContent>
       </Card>
     </main>

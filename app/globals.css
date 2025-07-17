@@ -80,3 +80,15 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .dark .bg-primary,
+  .dark .bg-indigo-500,
+  .dark .bg-purple-500,
+  .dark .bg-gradient-to-r {
+    color: #fff !important;
+  }
+  .dark .text-primary-foreground {
+    color: #fff !important;
+  }
+}

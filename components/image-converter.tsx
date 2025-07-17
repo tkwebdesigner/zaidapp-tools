@@ -187,7 +187,7 @@ export function ImageConverter() {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto space-y-4 sm:space-y-6 px-4 sm:px-0">
+    <div className="w-full mx-auto space-y-4 sm:space-y-6 px-4 sm:px-0">
       <motion.div
         className="p-4 sm:p-6 rounded-2xl shadow-xl bg-card/80 backdrop-blur-md border border-border"
         initial={{ opacity: 0, y: 20 }}
