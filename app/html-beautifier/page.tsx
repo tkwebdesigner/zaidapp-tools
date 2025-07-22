@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import HTMLBeautifierClient from './HTMLBeautifierClient';
 import {
   Breadcrumb,
@@ -18,7 +19,7 @@ export const metadata = {
     type: 'website',
     images: [
       {
-        url: '/sharing-images/seo-checker-tool.webp',
+        url: '/sharing-images/html-beautifier.webp',
         width: 1200,
         height: 630,
         alt: 'HTML Beautifier - Web Tools',
@@ -29,7 +30,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'HTML Beautifier - Web Tools',
     description: 'Beautify and format your HTML code instantly online. Improve readability and maintain clean markup.',
-    images: ['/sharing-images/seo-checker-tool.webp'],
+    images: ['/sharing-images/html-beautifier.webp'],
   },
 };
 
@@ -45,7 +46,7 @@ export default function HTMLBeautifierPage() {
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbLink href="#">Tools</BreadcrumbLink>
+                <BreadcrumbLink href="/convertor">Tools</BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
@@ -62,14 +63,20 @@ export default function HTMLBeautifierPage() {
           <HTMLBeautifierClient />
         </div>
       </main>
-      <div className="mt-8 mx-auto text-base leading-relaxed text-muted-foreground max-w-3xl">
+      <div className="mt-8 mx-auto text-base leading-relaxed text-muted-foreground">
         <h2 className="text-2xl font-bold mb-4 text-foreground">About the HTML Beautifier Tool</h2>
-        <p>
-          The HTML Beautifier Tool is a versatile and essential utility for web developers, designers, and anyone who works with HTML code. It helps you instantly format and organize your HTML, making it easier to read, debug, and maintain. Whether you’re working on a small project or a large website, clean and well-structured HTML is crucial for both development and long-term success.
-        </p>
-        <p className="mt-4">
-          <strong>What is HTML Beautification?</strong> HTML beautification is the process of formatting HTML code by adding proper indentation, line breaks, and spacing. This makes the code more readable and easier to understand, especially when collaborating with others or revisiting your work after some time.
-        </p>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5'>
+          <Image className='rounded-lg shadow-sm border border-2' src={'/sharing-images/html-beautifier.webp'} alt='HTML Beautifier Tool' title='HTML Beautifier Tool' width={1200} height={675} />
+          <div>
+            <p>
+              The <strong>HTML Beautifier Tool</strong> is a versatile and essential utility for web developers, designers, and anyone who works with HTML code. It helps you instantly format and organize your HTML, making it easier to read, debug, and maintain. Whether you’re working on a small project or a large website, clean and well-structured HTML is crucial for both development and long-term success.
+            </p>
+            <h2 className="text-2xl font-bold mt-5 mb-4 text-foreground">What is HTML Beautification?</h2>
+            <p className="mt-4">
+              HTML beautification is the process of formatting HTML code by adding proper indentation, line breaks, and spacing. This makes the code more readable and easier to understand, especially when collaborating with others or revisiting your work after some time.
+            </p>
+          </div>
+        </div>
         <p className="mt-4">
           <strong>Features:</strong> The HTML Beautifier Tool offers a simple interface where you can paste your HTML code, click a button, and instantly receive a beautifully formatted version. It supports all valid HTML syntax, handles large files, and provides a one-click copy-to-clipboard feature for easy integration into your projects.
         </p>

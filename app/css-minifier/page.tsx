@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import CSSMinifierClient from './CSSMinifierClient';
 import {
   Breadcrumb,
@@ -18,7 +19,7 @@ export const metadata = {
     type: 'website',
     images: [
       {
-        url: '/sharing-images/seo-checker-tool.webp',
+        url: '/sharing-images/css-minifier.webp',
         width: 1200,
         height: 630,
         alt: 'CSS Minifier - Web Tools',
@@ -29,7 +30,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'CSS Minifier - Web Tools',
     description: 'Minify your CSS code instantly online. Remove whitespace, comments, and reduce file size for faster websites.',
-    images: ['/sharing-images/seo-checker-tool.webp'],
+    images: ['/sharing-images/css-minifier.webp'],
   },
 };
 
@@ -45,7 +46,7 @@ export default function CSSMinifierPage() {
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbLink href="#">Tools</BreadcrumbLink>
+                <BreadcrumbLink href="/convertor">Tools</BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
@@ -62,14 +63,20 @@ export default function CSSMinifierPage() {
           <CSSMinifierClient />
         </div>
       </main>
-      <div className="mt-8 mx-auto text-base leading-relaxed text-muted-foreground max-w-3xl">
+      <div className="mt-8 mx-auto text-base leading-relaxed text-muted-foreground">
         <h2 className="text-2xl font-bold mb-4 text-foreground">About the CSS Minifier Tool</h2>
-        <p>
-          The CSS Minifier Tool is a fast, reliable, and user-friendly utility designed to help web developers, designers, and site owners optimize their CSS code. By removing unnecessary whitespace, comments, and formatting, this tool reduces the size of your CSS files, resulting in faster page loads and improved website performance.
-        </p>
-        <p className="mt-4">
-          <strong>What is CSS Minification?</strong> CSS minification is the process of compressing CSS code by eliminating all unnecessary characters, such as spaces, line breaks, and comments, without affecting how the code functions. The result is a smaller file size, which helps your website load faster and use less bandwidth.
-        </p>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5'>
+          <Image className='rounded-lg shadow-sm border border-2' src={'/sharing-images/css-minifier.webp'} alt='CSS Minifier Tool' title='CSS Minifier Tool' width={1200} height={675} />
+          <div>
+            <p>
+              The CSS Minifier Tool is a fast, reliable, and user-friendly utility designed to help web developers, designers, and site owners optimize their CSS code. By removing unnecessary whitespace, comments, and formatting, this tool reduces the size of your CSS files, resulting in faster page loads and improved website performance.
+            </p>
+            <h2 className="text-2xl font-bold mt-5 mb-4 text-foreground">What is CSS Minification?</h2>
+            <p className="mt-4">
+              CSS minification is the process of compressing CSS code by eliminating all unnecessary characters, such as spaces, line breaks, and comments, without affecting how the code functions. The result is a smaller file size, which helps your website load faster and use less bandwidth.
+            </p>
+          </div>
+        </div>
         <p className="mt-4">
           <strong>Features:</strong> The CSS Minifier Tool offers a simple interface where you can paste your CSS code, click a button, and instantly receive a minified version. It supports all valid CSS syntax, handles large files, and provides a one-click copy-to-clipboard feature for easy integration into your projects.
         </p>

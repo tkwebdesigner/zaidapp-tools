@@ -39,7 +39,6 @@ export default function FAQSchemaGeneratorClient() {
 
   return (
     <div className="w-full mx-auto">
-      <h1 className="text-3xl font-extrabold mb-8 text-gradient bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent text-center">FAQ Schema Generator</h1>
       <form className="flex flex-col gap-8">
         {faqs.map((faq, idx) => (
           <div key={idx} className="flex flex-col gap-2 bg-card/80 border border-border rounded-xl p-4 shadow-sm">

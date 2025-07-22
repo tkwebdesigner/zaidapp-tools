@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useCallback } from 'react';
-import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
@@ -10,7 +9,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import Image from 'next/image';
 import { Skeleton } from '@/components/ui/skeleton';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 
 interface ConversionOption {
   label: string;
@@ -46,6 +44,26 @@ const conversionOptions: ConversionOption[] = [
     value: 'png-to-webp',
     description: 'Convert PNG images to WEBP format while maintaining quality',
   },
+  {
+    label: 'SVG to PNG',
+    value: 'svg-to-png',
+    description: 'Convert SVG vector images to PNG raster format',
+  },
+  {
+    label: 'AVIF to WEBP',
+    value: 'avif-to-webp',
+    description: 'Convert AVIF images to WEBP format',
+  },
+  {
+    label: 'AVIF to JPG',
+    value: 'avif-to-jpg',
+    description: 'Convert AVIF images to JPG format',
+  },
+  {
+    label: 'PNG to SVG',
+    value: 'png-to-svg',
+    description: 'Convert PNG raster images to SVG vector format',
+  },
 ];
 
 export function ImageConverter() {
@@ -70,8 +88,19 @@ export function ImageConverter() {
 
       // Validate file type
       const fileExtension = file.name.split('.').pop()?.toLowerCase();
-      const validExtensions = fromFormat === 'jpg' ? ['jpg', 'jpeg'] : [fromFormat];
-      
+      let validExtensions: string[];
+      if (fromFormat === 'jpg') {
+        validExtensions = ['jpg', 'jpeg'];
+      } else if (fromFormat === 'svg') {
+        validExtensions = ['svg'];
+      } else if (fromFormat === 'avif') {
+        validExtensions = ['avif'];
+      } else if (fromFormat === 'png') {
+        validExtensions = ['png'];
+      } else {
+        validExtensions = [fromFormat];
+      }
+
       if (!fileExtension || !validExtensions.includes(fileExtension)) {
         toast.error(`File ${file.name} is not a valid ${fromFormat.toUpperCase()} file. Expected: ${validExtensions.join(', ').toUpperCase()}`);
         return;
@@ -198,20 +227,21 @@ export function ImageConverter() {
         <div className="space-y-4 sm:space-y-6">
           <div className="space-y-2">
             <Label className="text-sm sm:text-base font-semibold">Select Conversion Type</Label>
-            <Tabs value={conversionType} onValueChange={setConversionType} className="w-full">
-              <TabsList className="w-full grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <Select value={conversionType} onValueChange={setConversionType}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select conversion type" />
+              </SelectTrigger>
+              <SelectContent>
                 {conversionOptions.map(option => (
-                  <TabsTrigger key={option.value} value={option.value} className="truncate">
+                  <SelectItem key={option.value} value={option.value}>
                     {option.label}
-                  </TabsTrigger>
+                  </SelectItem>
                 ))}
-              </TabsList>
-              {conversionOptions.map(option => (
-                <TabsContent key={option.value} value={option.value}>
-                  <div className="text-sm text-muted-foreground mt-2 mb-4">{option.description}</div>
-                </TabsContent>
-              ))}
-            </Tabs>
+              </SelectContent>
+            </Select>
+            <div className="text-sm text-muted-foreground mt-2 mb-4">
+              {conversionOptions.find(option => option.value === conversionType)?.description}
+            </div>
           </div>
 
           <div className="space-y-2">
@@ -246,7 +276,14 @@ export function ImageConverter() {
                   id="dropzone-file"
                   type="file"
                   className="hidden"
-                  accept={`image/${conversionType.split('-to-')[0] === 'jpg' ? 'jpeg' : conversionType.split('-to-')[0]}, image/${conversionType.split('-to-')[0]}`}
+                  accept={(() => {
+                    const from = conversionType.split('-to-')[0];
+                    if (from === 'jpg') return 'image/jpeg, image/jpg';
+                    if (from === 'svg') return 'image/svg+xml,.svg';
+                    if (from === 'avif') return 'image/avif,.avif';
+                    if (from === 'png') return 'image/png,.png';
+                    return `image/${from}`;
+                  })()}
                   onChange={handleFileSelect}
                   multiple
                 />

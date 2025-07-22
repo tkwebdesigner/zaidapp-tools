@@ -6,6 +6,7 @@ export async function GET() {
     { loc: `${baseUrl}/`, lastmod: new Date().toISOString(), priority: '1.0' },
     { loc: `${baseUrl}/about-us`, lastmod: new Date().toISOString(), priority: '0.8' },
     { loc: `${baseUrl}/contact-us`, lastmod: new Date().toISOString(), priority: '0.8' },
+    { loc: `${baseUrl}/convertor`, lastmod: new Date().toISOString(), priority: '0.8' },
     { loc: `${baseUrl}/disclaimer`, lastmod: new Date().toISOString(), priority: '0.8' },
     { loc: `${baseUrl}/privacy-policy`, lastmod: new Date().toISOString(), priority: '0.8' },
     { loc: `${baseUrl}/refund-policy`, lastmod: new Date().toISOString(), priority: '0.8' },
