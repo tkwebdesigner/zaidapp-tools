@@ -130,7 +130,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         `flex-1 flex flex-row w-full max-w-[1920px] ${isHome ? 'px-0' : 'px-3'} mb-3 mx-auto pt-4 md:pt-8 gap-0 lg:gap-12 xl:gap-16`
       }>
         {/* Always render Sidebar Sheet for mobile */}
-        <div className="lg:hidden">
+        <div className="hidden lg:hidden">
           <Sidebar isOpen={sidebarOpen} setOpen={setSidebarOpen} />
         </div>
         {/* Sidebar: fixed width, main content flex-1 (desktop only) */}

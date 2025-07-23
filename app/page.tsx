@@ -189,7 +189,7 @@ export default function Home() {
               transition: 'background-position 1s',
             }}
           />
-          <div className="max-w-4xl mx-auto text-center relative flex flex-col items-center justify-center h-full">
+          <div className="max-w-4xl mx-auto text-center relative flex flex-col items-center justify-center h-full pb-4">
             <Badge variant="secondary" className="mb-6 text-base px-4 py-2 font-semibold shadow-lg bg-white/80 text-black/80 backdrop-blur-md">
               🚀 Free Web Tools Collection
             </Badge>
@@ -216,7 +216,7 @@ export default function Home() {
               <Button
                 size="lg"
                 variant="outline"
-                className="bg-white/80 text-black border-0 font-semibold shadow-lg hover:bg-pink-500 hover:text-white hover:scale-105 transition-transform duration-200"
+                className="bg-indigo-500 text-white border-0 font-semibold shadow-lg hover:bg-pink-500 hover:text-white hover:scale-105 transition-transform duration-200"
                 asChild
               >
                 <Link href="#features">
@@ -332,7 +332,7 @@ export default function Home() {
             <p className="text-xl mb-8 text-white/80">
               Choose any tool and start working efficiently. No signup required, no limits.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center px-20">
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-semibold shadow-lg hover:from-indigo-600 hover:to-pink-600 hover:scale-105 transition-transform duration-200 border-0"
@@ -346,7 +346,7 @@ export default function Home() {
               <Button
                 size="lg"
                 variant="outline"
-                className="bg-indigo-600 text-white border-0 font-semibold shadow-lg hover:bg-pink-500 hover:text-white hover:scale-105 transition-transform duration-200"
+                className="bg-white text-indigo-700 border-0 font-semibold shadow-lg hover:bg-pink-500 hover:text-white hover:scale-105 transition-transform duration-200"
                 asChild
               >
                 <Link href="/seo-checker">
