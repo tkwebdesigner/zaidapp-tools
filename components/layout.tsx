@@ -16,14 +16,7 @@ import {
   NavigationMenuContent,
   NavigationMenuLink
 } from '@/components/ui/navigation-menu';
-import {
-  Breadcrumb,
-  BreadcrumbList,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbPage,
-  BreadcrumbSeparator
-} from '@/components/ui/breadcrumb';
+import Image from 'next/image';
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -50,14 +43,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const PAGE_TITLES: Record<string, string> = {
-    '/word-counter': 'Word Counter',
-    '/age-calculator': 'Age Calculator',
-    '/seo-checker': 'SEO Checker',
-    '/image-converter': 'Image Converter',
-    '/sitemap-generator': 'Sitemap Generator',
-  };
-
   const infoLinks = [
     { name: 'About Us', href: '/about-us', icon: Info },
     { name: 'Contact Us', href: '/contact-us', icon: Mail },
@@ -75,7 +60,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             {/* Mobile: logo left, toggler and theme toggle right */}
             <div className="flex items-center w-full justify-between lg:hidden">
               <Link href="/" aria-label="Go to Home" className="flex items-center gap-2">
-                <img src="/images/app-logo.svg" alt="Logo" className="h-8 w-8" />
+                <Image src="/images/app-logo.svg" alt="Logo" title='Logo' className="h-8 w-8" width={32} height={32} />
               </Link>
               <div className="flex items-center gap-2">
                 <button
@@ -91,7 +76,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             {/* Desktop header content */}
             <div className="hidden lg:flex flex-1 items-center justify-start">
               <Link href="/" aria-label="Go to Home" className="flex items-center gap-2">
-                <img src="/images/app-logo.svg" alt="Logo" className="h-8 w-8" />
+                <Image src="/images/app-logo.svg" alt="Logo" title='Logo' className="h-8 w-8" width={32} height={32} />
                 <span className="text-2xl font-extrabold tracking-tight text-gradient bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent select-none cursor-pointer">
                   Web Tools
                 </span>
@@ -119,6 +104,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                         <NavigationMenuLink href="/faq-schema-generator" className="block px-2 py-1 rounded hover:bg-accent">FAQ Schema Generator</NavigationMenuLink>
                         <NavigationMenuLink href="/css-minifier" className="block px-2 py-1 rounded hover:bg-accent">CSS Minifier</NavigationMenuLink>
                         <NavigationMenuLink href="/html-beautifier" className="block px-2 py-1 rounded hover:bg-accent">HTML Beautifier</NavigationMenuLink>
+                        <NavigationMenuLink href="/speech-to-text" className="block px-2 py-1 rounded hover:bg-accent">Speech to Text</NavigationMenuLink>
                       </div>
                     </NavigationMenuContent>
                   </NavigationMenuItem>

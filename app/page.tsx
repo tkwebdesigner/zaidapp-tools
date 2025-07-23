@@ -4,21 +4,16 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { 
   TextQuote, 
   CalendarDays, 
   Search, 
   Image as ImageIcon,
+  Mic,
   ArrowRight,
-  CheckCircle,
   Zap,
   Shield,
-  Clock,
-  BarChart3,
-  Palette,
-  Download,
   Globe,
   Target
 } from 'lucide-react';
@@ -42,6 +37,21 @@ const tools = [
     image: '/images/word-counter.svg',
     imageAlt: 'Word Counter illustration',
     bg: 'from-blue-50 to-blue-100',
+  },
+  {
+    id: 'speech-to-text',
+    name: 'Speech to Text',
+    description: 'Convert your speech to text in real-time with high accuracy. Supports English and Hindi languages for versatile use.',
+    features: [
+      'Real-time speech recognition',
+      'English and Hindi language support',
+      'Copy to clipboard and download options',
+    ],
+    icon: Mic,
+    href: '/speech-to-text',
+    image: '/images/speech-to-text.svg',
+    imageAlt: 'Speech to Text illustration',
+    bg: 'from-red-50 to-red-100',
   },
   {
     id: 'age-calculator',
@@ -190,7 +200,7 @@ export default function Home() {
               </span>
             </h1>
             <p className="text-lg md:text-2xl text-black/70 dark:text-white/80 mb-10 max-w-2xl mx-auto font-medium">
-              Discover our collection of powerful, free web tools designed to help you work smarter, not harder. From content analysis to image processing, we've got you covered.
+              Discover our collection of powerful, free web tools designed to help you work smarter, not harder. From content analysis to image processing, we&apos;ve got you covered.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
@@ -361,6 +371,7 @@ export default function Home() {
                 <h4 className="font-semibold mb-4 text-foreground">Tools</h4>
                 <ul className="space-y-2 text-muted-foreground">
                   <li><Link href="/word-counter" className="hover:text-primary transition-colors">Word Counter</Link></li>
+                  <li><Link href="/speech-to-text" className="hover:text-primary transition-colors">Speech to Text</Link></li>
                   <li><Link href="/age-calculator" className="hover:text-primary transition-colors">Age Calculator</Link></li>
                   <li><Link href="/seo-checker" className="hover:text-primary transition-colors">SEO Checker</Link></li>
                   <li><Link href="/image-converter" className="hover:text-primary transition-colors">Image Converter</Link></li>

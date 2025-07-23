@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import sharp from 'sharp';
-import { Potrace } from 'potrace';
-import { Readable } from 'stream';
+import potrace from 'potrace'; // ✅ Corrected import for potrace
 
 export const runtime = 'nodejs';
 
@@ -12,36 +11,27 @@ export async function POST(req: Request) {
     const conversionType = formData.get('conversionType') as string;
 
     if (!file) {
-      return NextResponse.json(
-        { error: 'No file provided' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'No file provided' }, { status: 400 });
     }
 
     // Convert File to Buffer
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
-    // Validate file type
     const [fromFormatRaw, toFormatRaw] = conversionType.split('-to-');
-    // Normalize 'jpg' to 'jpeg' for sharp
     const fromFormat = fromFormatRaw === 'jpg' ? 'jpeg' : fromFormatRaw;
-    const fileType = await sharp(buffer).metadata().then(meta => meta.format);
-    
-    // Allow 'svg' as input for svg-to-png
+
+    const metadata = await sharp(buffer).metadata();
+    const fileType = metadata.format;
+
+    // Validate input type
     if (conversionType === 'svg-to-png') {
       if (fileType !== 'svg') {
-        return NextResponse.json(
-          { error: `Invalid file type. Expected SVG` },
-          { status: 400 }
-        );
+        return NextResponse.json({ error: `Invalid file type. Expected SVG` }, { status: 400 });
       }
     } else if (fromFormatRaw === 'avif') {
       if (fileType !== 'avif') {
-        return NextResponse.json(
-          { error: `Invalid file type. Expected AVIF` },
-          { status: 400 }
-        );
+        return NextResponse.json({ error: `Invalid file type. Expected AVIF` }, { status: 400 });
       }
     } else {
       if (fileType !== fromFormat) {
@@ -52,21 +42,31 @@ export async function POST(req: Request) {
       }
     }
 
-    // PNG to SVG using potrace
+    // ✅ PNG to SVG with potrace
     if (conversionType === 'png-to-svg') {
       if (fileType !== 'png') {
-        return NextResponse.json(
-          { error: `Invalid file type. Expected PNG` },
-          { status: 400 }
-        );
+        return NextResponse.json({ error: `Invalid file type. Expected PNG` }, { status: 400 });
       }
-      // Use potrace to convert PNG buffer to SVG
-      const svg = await new Promise((resolve, reject) => {
-        Potrace.trace(buffer, { type: 'svg' }, (err, svg) => {
-          if (err) reject(err);
-          else resolve(svg);
+
+      // Preprocess the image for tracing
+      const preProcessedBuffer = await sharp(buffer)
+        .flatten({ background: '#ffffff' }) // Remove transparency
+        .resize(512)                         // Optional: resize for performance
+        .grayscale()
+        .threshold(128)                      // Convert to black & white
+        .toBuffer();
+
+      const svg = await new Promise<string>((resolve, reject) => {
+        potrace.trace(preProcessedBuffer, { type: 'svg' }, (err, svg) => {
+          if (err) {
+            console.error('Potrace error:', err);
+            reject(err);
+          } else {
+            resolve(svg);
+          }
         });
       });
+
       return new NextResponse(svg, {
         headers: {
           'Content-Type': 'image/svg+xml',
@@ -75,9 +75,8 @@ export async function POST(req: Request) {
       });
     }
 
+    // ✅ Other conversions (e.g., jpg-to-png, webp-to-jpg)
     let sharpInstance = sharp(buffer);
-
-    // Apply conversion based on target format
     switch (toFormatRaw) {
       case 'png':
         sharpInstance = sharpInstance.png();
@@ -88,7 +87,6 @@ export async function POST(req: Request) {
       case 'webp':
         sharpInstance = sharpInstance.webp({ quality: 90 });
         break;
-      // No need to add avif output, as we only want avif as input for now
       default:
         return NextResponse.json(
           { error: 'Unsupported conversion format' },
@@ -111,4 +109,4 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-} 
+}
