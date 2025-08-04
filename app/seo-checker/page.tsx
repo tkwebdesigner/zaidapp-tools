@@ -8,6 +8,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator
 } from '@/components/ui/breadcrumb';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'SEO Checker - Analyze Website SEO Performance',
@@ -73,21 +74,26 @@ export default function SEOCheckerPage() {
           </Breadcrumb>
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gradient bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-2">SEO Checker</h1>
           <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
-            Free online SEO checker tool. Analyze your website's SEO performance with comprehensive metrics and actionable recommendations for better search rankings.
+            Free online SEO checker tool. Analyze your website&apos;s SEO performance with comprehensive metrics and actionable recommendations for better search rankings.
           </p>
         </div>
         <div className="max-w-3xl mx-auto">
           <SEOChecker />
         </div>
       </main>
-      <div className="mt-8 mx-auto text-base leading-relaxed text-muted-foreground max-w-3xl">
+      <div className="mt-8 mx-auto text-base leading-relaxed text-muted-foreground">
         <h2 className="text-2xl font-bold mb-4 text-foreground">About the SEO Checker Tool</h2>
-        <p>
-          The SEO Checker tool is designed to help website owners, marketers, and developers optimize their sites for search engines. With just a few clicks, you can analyze your website’s SEO performance and receive actionable insights to improve your rankings. The tool checks for essential SEO factors such as meta tags, headings, keyword usage, mobile-friendliness, and page speed.
-        </p>
-        <p className="mt-4">
-          Using the SEO Checker is easy—simply enter your website URL, and the tool will scan your site and provide a detailed report. The results highlight strengths and areas for improvement, making it simple to prioritize your SEO efforts. Whether you’re a beginner or an experienced SEO professional, this tool offers valuable guidance for boosting your site’s visibility.
-        </p>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5'>
+          <Image className='rounded-lg shadow-sm border' src={'/sharing-images/seo-checker-tool.webp'} alt='SEO Checker Tool' title='SEO Checker Tool' width={1200} height={675} />
+          <div>
+            <p>
+              The SEO Checker tool is designed to help website owners, marketers, and developers optimize their sites for search engines. With just a few clicks, you can analyze your website’s SEO performance and receive actionable insights to improve your rankings. The tool checks for essential SEO factors such as meta tags, headings, keyword usage, mobile-friendliness, and page speed.
+            </p>
+            <p className="mt-4">
+              Using the SEO Checker is easy—simply enter your website URL, and the tool will scan your site and provide a detailed report. The results highlight strengths and areas for improvement, making it simple to prioritize your SEO efforts. Whether you’re a beginner or an experienced SEO professional, this tool offers valuable guidance for boosting your site’s visibility.
+            </p>
+          </div>
+        </div>
         <p className="mt-4">
           The tool’s user-friendly interface presents information in a clear, organized manner. You’ll find recommendations for on-page SEO, technical SEO, and content optimization. The responsive design ensures you can use the tool on any device, and your data is never stored or shared, maintaining your privacy.
         </p>

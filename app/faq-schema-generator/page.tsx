@@ -67,10 +67,10 @@ export default function FAQSchemaGeneratorPage() {
       <div className="mt-4 mx-auto text-base leading-relaxed text-muted-foreground">
         <h2 className="text-2xl font-bold mb-4 text-foreground">About the FAQ Schema Generator Tool</h2>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5'>
-          <Image className='rounded-lg shadow-sm border border-2' src={'/sharing-images/faq-schema-generator.webp'} alt='FAQ Schema Generator Tool' title='FAQ Schema Generator Tool' width={1200} height={675} />
+          <Image className='rounded-lg shadow-sm border' src={'/sharing-images/faq-schema-generator.webp'} alt='FAQ Schema Generator Tool' title='FAQ Schema Generator Tool' width={1200} height={675} />
           <div>
             <p>
-              The <strong>FAQ Schema Generator Tool</strong> is a powerful and user-friendly utility designed to help website owners, marketers, and SEO professionals create structured FAQ data for their websites. By generating valid JSON-LD FAQ schema, this tool enables you to enhance your site's search engine visibility, improve user experience, and increase the likelihood of your FAQs appearing as rich results in Google and other search engines.
+              The <strong>FAQ Schema Generator Tool</strong> is a powerful and user-friendly utility designed to help website owners, marketers, and SEO professionals create structured FAQ data for their websites. By generating valid JSON-LD FAQ schema, this tool enables you to enhance your site&apos;s search engine visibility, improve user experience, and increase the likelihood of your FAQs appearing as rich results in Google and other search engines.
             </p>
             <h2 className="text-2xl font-bold mt-5 mb-4 text-foreground">What is FAQ Schema?</h2>
             <p className="mt-4">
@@ -86,7 +86,7 @@ export default function FAQSchemaGeneratorPage() {
           <ul className="list-disc ml-6 mt-2">
             <li>Increase your visibility for rich snippets in Google search results</li>
             <li>Reduce customer support queries by providing instant answers</li>
-            <li>Improve your site's SEO and click-through rates</li>
+            <li>Improve your site&apos;s SEO and click-through rates</li>
             <li>Increase user trust and interaction</li>
           </ul>
         </div>
@@ -97,7 +97,7 @@ export default function FAQSchemaGeneratorPage() {
           <strong>Best Practices:</strong> When you are utilizing the <strong>FAQ Schema Generator Tool</strong>, keep in mind that your questions and answers must be short, succinct, clear, and really helpful. Do not duplicate contents nor for marketing intent use the schema. Mention only questions applicable for your users and answer them accordingly.
         </p>
         <p className="mt-4">
-          <strong>Tips:</strong> Regularly update your FAQs to reflect new information or changes in your business. Test your generated schema using Google's Rich Results Test tool to ensure it is correctly implemented. Consider adding FAQs to multiple pages on your site to address different user needs.
+          <strong>Tips:</strong> Regularly update your FAQs to reflect new information or changes in your business. Test your generated schema using Google&apos;s Rich Results Test tool to ensure it is correctly implemented. Consider adding FAQs to multiple pages on your site to address different user needs.
         </p>
         <p className="mt-4">
           <strong>Conclusion:</strong> The FAQ Schema Generator Tool is an absolute necessity for anyone looking to give their website a much-needed SEO and usability boost. By making it easy for you to create and install properly formatted FAQ data, the tool keeps you one step ahead in the incredibly competitive space of <Link className='text-blue-500 underline' href={'seo-checker'} target='_blank'>Search Engine Optimization Checker Tool</Link>. Try it out now and see how much of a difference it can make for your site!

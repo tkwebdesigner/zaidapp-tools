@@ -38,6 +38,7 @@ export const metadata: Metadata = {
 };
 
 import SitemapGeneratorClient from './SitemapGeneratorClient';
+import Image from "next/image";
 
 export default function SitemapGeneratorPage() {
   return (
@@ -68,14 +69,19 @@ export default function SitemapGeneratorPage() {
           <SitemapGeneratorClient />
         </div>
       </main>
-      <div className="mt-8 mx-auto text-base leading-relaxed text-muted-foreground max-w-3xl">
+      <div className="mt-8 mx-auto text-base leading-relaxed text-muted-foreground">
         <h2 className="text-2xl font-bold mb-4 text-foreground">About the Sitemap Generator Tool</h2>
-        <p>
-          The Sitemap Generator tool is an invaluable resource for website owners, developers, and SEO professionals. It enables you to create comprehensive HTML and XML sitemaps for your website, including options for image sitemaps. Sitemaps help search engines discover and index your site’s pages more efficiently, improving your site’s visibility and ranking.
-        </p>
-        <p className="mt-4">
-          Using the Sitemap Generator is simple—just enter your website URL, select the type of sitemap you need, and click generate. The tool crawls your site and produces a sitemap that you can download and submit to search engines like Google and Bing. It supports both standard and image sitemaps, making it suitable for a wide range of websites.
-        </p>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5'>
+          <Image className='rounded-lg shadow-sm border' src={'/sharing-images/sitemap-generator-tool.webp'} alt='Sitemap Generator Tool' title='Sitemap Generator Tool' width={1200} height={675} />
+          <div>
+            <p>
+              The Sitemap Generator tool is an invaluable resource for website owners, developers, and SEO professionals. It enables you to create comprehensive HTML and XML sitemaps for your website, including options for image sitemaps. Sitemaps help search engines discover and index your site’s pages more efficiently, improving your site’s visibility and ranking.
+            </p>
+            <p className="mt-4">
+              Using the Sitemap Generator is simple—just enter your website URL, select the type of sitemap you need, and click generate. The tool crawls your site and produces a sitemap that you can download and submit to search engines like Google and Bing. It supports both standard and image sitemaps, making it suitable for a wide range of websites.
+            </p>
+          </div>
+        </div>
         <p className="mt-4">
           The tool’s interface is clean and user-friendly, with clear instructions and helpful feedback during the generation process. It’s designed to work seamlessly on any device, so you can generate sitemaps from your desktop or mobile device. Your privacy is protected—no data is stored or shared.
         </p>

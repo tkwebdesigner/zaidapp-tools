@@ -8,6 +8,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator
 } from '@/components/ui/breadcrumb';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Age Calculator - Calculate Age & Time Differences',
@@ -80,14 +81,19 @@ export default function AgeCalculatorPage() {
           <AgeCalculator />
         </div>
       </main>
-      <div className="mt-8 mx-auto text-base leading-relaxed text-muted-foreground max-w-3xl">
+      <div className="mt-8 mx-auto text-base leading-relaxed text-muted-foreground">
         <h2 className="text-2xl font-bold mb-4 text-foreground">About the Age Calculator Tool</h2>
-        <p>
-          The Age Calculator tool is a simple yet powerful utility that helps you determine your exact age in years, months, and days. Whether you need to calculate your age for official documents, plan a birthday celebration, or simply satisfy your curiosity, this tool provides instant and accurate results. It’s also useful for parents, teachers, and HR professionals who need to verify ages for various purposes.
-        </p>
-        <p className="mt-4">
-          Using the Age Calculator is straightforward—just enter your birth date, and the tool will instantly display your age. The calculation takes into account leap years and varying month lengths, ensuring precision. This makes it ideal for use in academic, professional, and personal contexts.
-        </p>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5'>
+          <Image className='rounded-lg shadow-sm border' src={'/sharing-images/bith-date-calculator.webp'} alt='Age Calculator Tool' title='Age Calculator Tool' width={1200} height={675} />
+          <div>
+            <p>
+              The Age Calculator tool is a simple yet powerful utility that helps you determine your exact age in years, months, and days. Whether you need to calculate your age for official documents, plan a birthday celebration, or simply satisfy your curiosity, this tool provides instant and accurate results. It’s also useful for parents, teachers, and HR professionals who need to verify ages for various purposes.
+            </p>
+            <p className="mt-4">
+              Using the Age Calculator is straightforward—just enter your birth date, and the tool will instantly display your age. The calculation takes into account leap years and varying month lengths, ensuring precision. This makes it ideal for use in academic, professional, and personal contexts.
+            </p>
+          </div>
+        </div>
         <p className="mt-4">
           The tool is designed with user experience in mind. Its clean interface and responsive design make it accessible on any device, from smartphones to desktops. There’s no need to sign up or provide any personal information; your data is never stored or shared, ensuring complete privacy.
         </p>

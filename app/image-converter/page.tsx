@@ -8,6 +8,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator
 } from '@/components/ui/breadcrumb';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Image Converter - Convert JPG, PNG, WebP Formats',
@@ -80,14 +81,19 @@ export default function ImageConverterPage() {
           <ImageConverter />
         </div>
       </main>
-      <div className="mt-8 mx-auto text-base leading-relaxed text-muted-foreground max-w-3xl">
+      <div className="mt-8 mx-auto text-base leading-relaxed text-muted-foreground">
         <h2 className="text-2xl font-bold mb-4 text-foreground">About the Image Converter Tool</h2>
-        <p>
-          The Image Converter tool is a versatile utility that allows you to convert images between popular formats such as JPG, PNG, WebP, and SVG. Whether you’re a designer, developer, or everyday user, this tool makes it easy to adapt images for websites, social media, or personal projects. No software installation is required—everything happens instantly in your browser.
-        </p>
-        <p className="mt-4">
-          To use the Image Converter, simply upload your image, select the desired output format, and click convert. The tool processes your image quickly and provides a download link for the converted file. It supports high-quality conversions and preserves important image properties like transparency and resolution.
-        </p>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5'>
+          <Image className='rounded-lg shadow-sm border' src={'/sharing-images/image-convertor-tool.webp'} alt='Image Converter Tool' title='Image Converter Tool' width={1200} height={675} />
+          <div>
+            <p>
+              The Image Converter tool is a versatile utility that allows you to convert images between popular formats such as JPG, PNG, WebP, and SVG. Whether you’re a designer, developer, or everyday user, this tool makes it easy to adapt images for websites, social media, or personal projects. No software installation is required—everything happens instantly in your browser.
+            </p>
+            <p className="mt-4">
+              To use the Image Converter, simply upload your image, select the desired output format, and click convert. The tool processes your image quickly and provides a download link for the converted file. It supports high-quality conversions and preserves important image properties like transparency and resolution.
+            </p>
+          </div>
+        </div>
         <p className="mt-4">
           The tool’s intuitive interface and responsive design ensure a smooth experience on any device. You can convert multiple images in succession, making it ideal for batch processing. Privacy is guaranteed—your images are never stored or shared, and all conversions happen securely in your browser.
         </p>
